@@ -1,0 +1,27 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
+
+  required_version = ">= 1.2.0"
+}
+
+provider "aws" {
+  region = "eu-west-1"
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-0d75513e7706cf2d9"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "ExampleAppServerInstance"
+  }
+}
+resource "local_file" hello-world {
+  filename = "${path.module}/home/hello_world.txt"
+  content = "foo"
+  }
